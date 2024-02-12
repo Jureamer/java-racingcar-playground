@@ -1,35 +1,37 @@
 package racingCar;
 
 public class Car {
-    private String carName;
-    private int position = 0;
+    private Name carName;
+    private Position position;
 
-    public Car(String carName) {
-        if (carName.length() > 5) {
-            throw new IllegalArgumentException("자동차 이름은 5글자를 초과할 수 없습니다.");
+    public Car(String name, int position) {
+        this.carName = new Name(name);
+        this.position = new Position(position);
+    }
+
+    public void move(int randomNum) {
+        if (isMovable(randomNum)) {
+            this.position.move();
         }
-
-        this.carName = carName;
     }
 
-
-    public int generateRandomNumber() {
-        int randomNumber = (int) Math.round(Math.random() * 100 / 10);
-        return randomNumber;
-    }
-
-    public void moveForward() {
-        this.position++;
-    }
-
-    public int getPosition() {
+    public Position getPosition() {
         return this.position;
     }
 
-    public String getCarName() {
+    public int getPositionValue() {
+        return this.position.getPosition();
+    }
+
+    public Name getName() {
         return this.carName;
     }
-    public boolean canMove(int number) {
-        return number >= 4;
+
+    public String getNameValue() {
+        return this.carName.getName();
+    }
+
+    public static boolean isMovable(int randomNum) {
+        return randomNum >= 4;
     }
 }
